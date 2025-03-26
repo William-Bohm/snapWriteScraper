@@ -1,11 +1,7 @@
 import dotenv
 import asyncio
-import json
-from typing import Dict, List
 
-import aiohttp
-
-from utils.llmFunctions import process_products_with_llm, ProductOutput
+from utils.llmFunctions import process_and_validate_products
 
 dotenv.load_dotenv()
 
@@ -36,23 +32,12 @@ async def main():
     """Main entry point for the application."""
     print("Processing products with LLM...")
     
-    # Process products with LLM
-    processed_products = await process_products_with_llm(Products)
+    # Process and validate products with LLM
+    validated_products, success = await process_and_validate_products(Products)
     
-    # Print results
-    if processed_products:
-        print(f"Successfully processed {len(processed_products)} products:")
-        for i, product in enumerate(processed_products[:2], 1):  # Show first two as examples
-            print(f"\nProduct {i}:")
-            print(json.dumps(product.model_dump(), indent=2))
-        
-        print(f"\n... and {len(processed_products) - 2} more products processed.")
-        
-        # Save to a variable for further use
-        validated_products = [p.model_dump() for p in processed_products]
+    if success:
         print(f"\nTotal products with valid data: {len(validated_products)}")
-    else:
-        print("Failed to process products.")
+        # validated_products now contains the structured data ready for use
     
     print("\nDone!")
 

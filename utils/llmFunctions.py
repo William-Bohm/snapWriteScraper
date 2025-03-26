@@ -1,5 +1,5 @@
 import json
-from typing import List, Dict
+from typing import List, Dict, Any, Tuple
 import aiohttp
 from pydantic import BaseModel
 
@@ -120,3 +120,39 @@ Now process the following product list and return a JSON array with each product
     else:
         print("No valid response from LLM")
         return []
+
+
+async def process_and_validate_products(products: List[Dict[str, str]]) -> Tuple[List[Dict[str, Any]], bool]:
+    """
+    Process products with LLM and return validated results.
+    
+    Args:
+        products: List of product dictionaries with 'name' key
+        
+    Returns:
+        Tuple containing:
+        - List of validated product dictionaries
+        - Boolean indicating success
+    """
+    # Process products with LLM
+    processed_products = await process_products_with_llm(products)
+    
+    # Print processing results
+    if not processed_products:
+        print("Failed to process products.")
+        return [], False
+    
+    print(f"Successfully processed {len(processed_products)} products:")
+    
+    # Show examples of processed products (first 2)
+    # for i, product in enumerate(processed_products[:2], 1):
+    #     print(f"\nProduct {i}:")
+    #     print(json.dumps(product.model_dump(), indent=2))
+    
+    # if len(processed_products) > 2:
+    #     print(f"\n... and {len(processed_products) - 2} more products processed.")
+    
+    # Convert to dictionaries for easier handling
+    validated_products = [p.model_dump() for p in processed_products]
+    
+    return validated_products, True
