@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "snapwrite"
+version = "0.1.0"
+description = "A tool for automated content creation"
+authors = ["Slater Bohm"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.32.3"
+python-dotenv = "^1.1.0"
+beautifulsoup4 = "^4.13.3"
+pandas = "^2.2.3"
+aiohttp = "^3.11.14"
+tenacity = "^9.0.0"
+google-genai = "^1.7.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+black = "^25.1.0"
+isort = "^6.0.1"
+flake8 = "^7.1.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
