@@ -25,6 +25,7 @@ Due to me only willing to spend a few hours on this project, alot of improvement
 * Containerize with docker and setup to run as a webserver (or run it as a serverless function like on AWS Lambda) with an api endpoint that takes in a search term, finds the data, and save it to our databases
 * simplify logging
 * Search through multiple pages, the script currently does not attempt to cycle through multiple pages for the same search.
+* Better error handling
 
 
 
