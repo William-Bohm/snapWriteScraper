@@ -30,9 +30,11 @@ Due to me only willing to spend a few hours on this project, alot of improvement
 
 # How to run the application
 * 1: create your .env file (you will need a google gemini api key for the LLM calling):
+```
 DEBUG=True
 LOG_LEVEL=INFO
 GOOGLE_API_KEY={YOUR_GEMIN_KEY_HERE}
+```
 
 * 2: Install the python packages
 This project uses poetry as the package manager, make sure you have poetry installed on your system before running
